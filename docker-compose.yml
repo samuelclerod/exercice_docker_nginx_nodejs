@@ -3,14 +3,14 @@ version: "3"
 services:
   app:
     build:
-      context: node
+      context: ./node
     container_name: app
     entrypoint: dockerize -wait tcp://db:3306 -timeout 20s docker-entrypoint.sh
     command: npm start
     networks:
       - node-network
     volumes:
-      - ./node:/usr/src/app
+      - /usr/app/node_modules
     tty: true
     # ports:
     #   - 3000:3000
